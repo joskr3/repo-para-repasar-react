@@ -1,4 +1,3 @@
-import React from 'react'
 import { HolaMundo } from '../../components/hola-mundo';
 
 const Home = () => {
