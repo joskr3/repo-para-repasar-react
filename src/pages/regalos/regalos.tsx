@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import ListaRegalos from "../../components/lista-regalos";
-import TodosLosRegalos from "../../components/todos-los-regalos";
+import Regalos from "../../components/todos-los-regalos";
 import "./styles.css";
 import RedimensionarPantalla from "../../components/redimensionar-pantalla";
-
+import { withLayout } from "../../components/with-layout";
 
 const RegalosPage = () => {
   const [regalos, setRegalos] = useState<string[]>([""]);
@@ -32,14 +32,25 @@ const RegalosPage = () => {
     }
   }, [regalos, regalos.length]);
 
+  // componente no Controlado . cuando obtenemos us valor desde el mismo DOM
+  const tituloReferencia = useRef(null);
+
+  useLayoutEffect(() => {
+    console.log(tituloReferencia);
+  }, []);
+
   return (
     <div className="flex flex-col gap-10">
-      <RedimensionarPantalla/>
-      <h1 className="text-3xl">Mis regalos</h1>
+      <RedimensionarPantalla />
+      <h1 className="text-3xl" ref={tituloReferencia}>
+        Mis regalos
+      </h1>
       <ListaRegalos regalos={regalos} agregarRegalo={agregarRegalo} />
-      <TodosLosRegalos totalRegalos={regalos.length} />
+      <Regalos totalRegalos={regalos.length} />
     </div>
   );
 };
 
-export default RegalosPage;
+const RegalosPageWithLayout = withLayout(RegalosPage);
+
+export default RegalosPageWithLayout;

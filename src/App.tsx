@@ -1,14 +1,15 @@
 
-// import Home from "./pages/home";
+
 //import ContadorPage from "./pages/contador/contador";
-import RegalosPage from "./pages/regalos/regalos";
+import Home from "./pages/home/home";
+//import RegalosPage from "./pages/regalos/regalos";
 
 function App() {
   return (
     <>
-      {/* <Home/> */}
+      <Home/>
       {/* <ContadorPage /> */}
-      <RegalosPage />
+      {/* <RegalosPage /> */}
     </>
   );
 }

@@ -52,20 +52,24 @@ export function HolaMundo(props: IHolaMundoProps) {
         </div>
       ))} */}
 
-       {/* comentarios => ctrl + k + c -> comentar
+      {/* comentarios => ctrl + k + c -> comentar
       ctrl + k + u -> descomentar */}
 
       <button className="bg-green-400 w-28 h-28" onClick={props.onClick}>
         Hola, hazme click
       </button>
 
-
-      {miObjApi.map(({ esProfesional, nombre, edad, hobbies }) => (
-        <div className={esProfesional ? "bg-amber-300" : "bg-rose-600"}>
-          <h1>Hola soy {nombre}</h1>
+      {miObjApi.map(({ esProfesional, nombre, edad, hobbies }, index) => (
+        <div
+          key={`${index}-${nombre}`}
+          className={esProfesional ? "bg-amber-300" : "bg-rose-600"}
+        >
+          <h1 id={`${index}-${nombre}`}>Hola soy {nombre}</h1>
           <p>Mi edad es:{edad} </p>
-          {hobbies.map((hobbie) => (
-            <p className="text-2xl text-black">{hobbie}</p>
+          {hobbies.map((hobbie, index) => (
+            <p key={index} className="text-2xl text-black">
+              {hobbie}
+            </p>
           ))}
         </div>
       ))}
