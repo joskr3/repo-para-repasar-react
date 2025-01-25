@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles.css";
+import { useTema } from "../context/TemaContexto";
 
 interface IHolaMundoProps {
   saludo: string;
@@ -9,6 +10,7 @@ interface IHolaMundoProps {
 
 export function HolaMundo(props: IHolaMundoProps) {
   const [miNuevoSaludo, setMiNuevoSaludo] = useState("");
+  const { cambiarTema } = useTema();
 
   //const misAlumnosFavs = ["Pedro", "Laura", "Michel", "Ronaldihno"];
 
@@ -54,16 +56,17 @@ export function HolaMundo(props: IHolaMundoProps) {
 
       {/* comentarios => ctrl + k + c -> comentar
       ctrl + k + u -> descomentar */}
+      <section className="flex flex-col gap-10">
+        <button className="bg-green-400 w-28 h-28" onClick={props.onClick}>
+          Hola, hazme click
+        </button>
+        <button className="bg-yellow-300 w-fit h-10" onClick={cambiarTema}>
+          Cambiar Tema
+        </button>
+      </section>
 
-      <button className="bg-green-400 w-28 h-28" onClick={props.onClick}>
-        Hola, hazme click
-      </button>
-
-      {miObjApi.map(({ esProfesional, nombre, edad, hobbies }, index) => (
-        <div
-          key={`${index}-${nombre}`}
-          className={esProfesional ? "bg-amber-300" : "bg-rose-600"}
-        >
+      {miObjApi.map(({ nombre, edad, hobbies }, index) => (
+        <div key={`${index}-${nombre}`}>
           <h1 id={`${index}-${nombre}`}>Hola soy {nombre}</h1>
           <p>Mi edad es:{edad} </p>
           {hobbies.map((hobbie, index) => (
@@ -114,21 +117,3 @@ const Input = ({ initialValue = "" }) => {
     </section>
   );
 };
-
-// function MyAchorTag() {
-//   return (
-//     <a className="misEstilos" href="/mi-ruta">
-//       Mi ruta
-//     </a>
-//   )
-// }
-
-// <MyAchorTag/>
-
-// const miElemento = document.createElement('a')
-
-// miElemento.href = "/nueva-ruta"
-
-// miElemento.style = "color:blue"
-
-// body.appendChild(miElemento)
